@@ -21,7 +21,7 @@ app_service_plans = {
   }
   asp2 = {
     name         = "cmaz-eh8dj90z-mod5-asp-02"
-    sku          = "P0v3"
+    sku          = "P1v3"
     worker_count = 1
   }
 }
