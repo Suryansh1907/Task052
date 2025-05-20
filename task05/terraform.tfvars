@@ -5,7 +5,7 @@ resource_groups = {
   }
   rg2 = {
     name     = "cmaz-eh8dj90z-mod5-rg-02"
-    location = "eastus"
+    location = "westus2"
   }
   rg3 = {
     name     = "cmaz-eh8dj90z-mod5-rg-03"
