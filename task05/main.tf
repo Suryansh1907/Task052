@@ -29,6 +29,10 @@ module "app_service_plan_1" {
   sku_name              = var.app_service_plans.asp1.sku
   worker_count          = var.app_service_plans.asp1.worker_count
   tags                  = var.tags
+
+  depends_on = [
+    module.resource_group_1
+  ]
 }
 
 module "app_service_plan_2" {
@@ -39,6 +43,10 @@ module "app_service_plan_2" {
   sku_name              = var.app_service_plans.asp2.sku
   worker_count          = var.app_service_plans.asp2.worker_count
   tags                  = var.tags
+
+  depends_on = [
+    module.resource_group_2
+  ]
 }
 
 # App Services
@@ -50,6 +58,11 @@ module "app_service_1" {
   app_service_plan_id = module.app_service_plan_1.app_service_plan_id
   ip_restrictions     = var.ip_restrictions
   tags                = var.tags
+
+  depends_on = [
+    module.resource_group_1,
+    module.app_service_plan_1
+  ]
 }
 
 module "app_service_2" {
@@ -60,6 +73,11 @@ module "app_service_2" {
   app_service_plan_id = module.app_service_plan_2.app_service_plan_id
   ip_restrictions     = var.ip_restrictions
   tags                = var.tags
+
+  depends_on = [
+    module.resource_group_2,
+    module.app_service_plan_2
+  ]
 }
 
 # Traffic Manager
@@ -81,4 +99,10 @@ module "traffic_manager" {
     }
   ]
   tags = var.tags
+
+  depends_on = [
+    module.resource_group_3,
+    module.app_service_1,
+    module.app_service_2
+  ]
 }
